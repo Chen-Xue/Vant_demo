@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- import CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+  </head>
+  <style>
+    .preview-cover {
+      position: absolute;
+      bottom: 0;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 4px;
+      color: #fff;
+      font-size: 12px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+    }
+  </style>
+  <body>
+    <div id="app">
+      <van-uploader v-model="fileList">
+        <template #preview-cover="{ file }">
+          <!-- <div class="preview-cover van-ellipsis">{{ file.name }}</div> -->
+        </template>
+      </van-uploader>
+    </div>
+    {{fileList}}
+  </body>
+  <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/vant@2.12/lib/index.css" />
+  <script src="https://unpkg.com/vue@2.6/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/vant@2.12/lib/vant.min.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: function () {
+        return {
+          fileList: [
+            { url: "https://img01.yzcdn.cn/vant/leaf.jpg", name: "1111" },
+            {
+              url: "https://img01.yzcdn.cn/vant/sand.jpg",
+              name: "2222",
+            },
+            {
+              url: "https://img01.yzcdn.cn/vant/tree.jpg",
+              name: "3333",
+            },
+          ],
+        };
+      },
+      methods: {
+        handleRemove(file) {
+          console.log(file);
+        },
+        handlePictureCardPreview(file) {
+          this.dialogImageUrl = file.url;
+          this.dialogVisible = true;
+        },
+        handleDownload(file) {
+          alert(777);
+          // console.log(file);
+        },
+      },
+    });
+    Vue.use(vant.Lazyload);
+  </script>
+</html>
